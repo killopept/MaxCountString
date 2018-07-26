@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    input{
+        margin: 0 auto;
+        display: block;
+        height: 30px;
+        width: 30%;
+        font-size: 20px;
+    }
+    p{
+        text-align: center;
+        color: aqua;
+    }
+</style>
+<body>
+    <input type="text"  id="test" killo="jkl"/>
+    <p></p>
+</body>
+<script>
+    function Self(data) {
+        var input = document.getElementById("test")
+        var p = document.getElementsByTagName("p")[0]
+        var attrAll = input.attributes
+        console.log(Object.keys(data))
+        var check = ''
+        for(var m = 0; m < Object.keys(data).length;m++){
+            if(Object.keys(data)[m] === input.getAttribute('killo')){
+                check = true
+            }else {
+                check = false
+            }
+        }  
+        for(var i = 0; i < attrAll.length;i++){
+            if(attrAll[i].nodeName === 'killo' && check){
+                var lang = input.getAttribute('killo')
+                console.log(data[lang])
+                p.innerHTML = data[lang]
+                document.body.addEventListener('input',function(e){
+                    data[lang] = e.target.value
+                    p.innerHTML = data[lang]
+                })
+            }else {
+                console.log("无绑定")
+            }
+        }
+    }
+    new Self({
+        jkl: '你是🐷吗'
+    })
+    // console.log(lang)
+    // var p = document.getElementsByTagName("p")[0]
+    // function model() {
+    //     p.innerHTML = input.value
+    // }
+    // var extendAttr = document.createAttribute("killo")
+    // extendAttr.nodeValue = input.getAttribute("killo")
+    // input.setAttributeNode(extendAttr)
+    // console.log(input.nodeValue)
+    // var lang = input.getAttribute("killo")
+    // console.log(lang ===null)
+    // lang = {
+    //     set current(name) {
+    //         this.log = name
+    //     },
+    //     log: ''
+    // }
+    // console.log(data[lang])
+    // p.innerHTML = data[lang]
+    // document.body.addEventListener('input',function(e){
+    //     data[lang] = e.target.value
+    //     p.innerHTML = data[lang]
+    // }
+</script> 
+</html>
+
